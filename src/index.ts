@@ -1,10 +1,10 @@
 import * as dotenv from "dotenv"
-import auth from "./utils/freshserviceAuth"
 dotenv.config()
+import addUser from "./utils/freshserviceAuth"
 
 
 const handler = async () => {
-    await auth
+    await addUser
 }
 
 handler()
