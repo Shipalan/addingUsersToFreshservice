@@ -1,30 +1,11 @@
-import * as dotenv from "dotenv";
-dotenv.config();
-
 import axios from "axios";
+import { userObjects } from "./getUserFromRippling";
 
 const apiKey = process.env.FRESHSERVICE_API_KEY;
 const url = "https://1solar.freshservice.com/api/v2/requesters";
-const data = [
-  {
-    first_name: "Aaron",
-    last_name: "Santos",
-    primary_email: "Aaron.Santos@1solar.com",
-  },
-  {
-    first_name: "Zack",
-    last_name: "dichtel",
-    primary_email: "zack.dichtel@1solar.com",
-  },
-  {
-    first_name: "clay",
-    last_name: "phipps",
-    primary_email: "clay.phipps@1solar.com",
-  },
-];
 
-const addUser = async () => {
-  data.forEach(async (user) => {
+const addUser = async (users: userObjects[]) => {
+  users.forEach(async (user) => {
     const config = {
       method: "post",
       url: url,
