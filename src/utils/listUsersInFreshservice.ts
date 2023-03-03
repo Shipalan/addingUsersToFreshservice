@@ -56,15 +56,13 @@ const listUsersInFreshservice = async () => {
       (res) => {
         const existingUsers: userEmail[] = []
         const requester = res.data.requesters
-        const users = requester.forEach((user) => {
+        const users = requester.forEach((user:freshServiceUser) => {
             const u = {
                 email: user.primary_email
             }
 
             existingUsers.push(u)
         })
-
-        console.log(users)
         
  
         return existingUsers
