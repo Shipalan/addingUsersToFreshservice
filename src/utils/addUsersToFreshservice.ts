@@ -6,6 +6,17 @@ const url = "https://1solar.freshservice.com/api/v2/requesters";
 
 const addUser = async (users: userObjects[]) => {
   users.forEach(async (user) => {
+
+    const userData = {
+      first_name: user.firstName,
+      last_name: user.lastName,
+      job_title: user.title,
+      primary_email: user.workEmail,
+      work_phone_number: null,
+      mobile_phone_number: null,
+      can_see_all_tickets_from_associated_departments: false
+    }
+
     const config = {
       method: "post",
       url: url,
@@ -13,7 +24,7 @@ const addUser = async (users: userObjects[]) => {
         "Content-Type": "application/json",
         Authorization: `Basic ${Buffer.from(apiKey + ":X").toString("base64")}`,
       },
-      data: user,
+      data: userData,
     };
 
     await axios(config)

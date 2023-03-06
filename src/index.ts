@@ -8,13 +8,11 @@ import removeUsers from "./utils/removeUsers";
 
 const handler = async () => {
   const usersFromRippling = await getUserInfoFromRippling();
-
   if (!usersFromRippling) {
     return;
   }
 
   const cleanUsersFromRippling = await cleanupRipplingData(usersFromRippling);
-  
   // Adding users to Freshservice
   const usersInFreshservice = await listUsersInFreshservice();
 
@@ -25,7 +23,9 @@ const handler = async () => {
   const updatedUserList = await removeUsers(
     usersInFreshservice, cleanUsersFromRippling
   );
-  //   await addUser(users);
+
+
+    await addUser(updatedUserList);
 };
 
 handler();
